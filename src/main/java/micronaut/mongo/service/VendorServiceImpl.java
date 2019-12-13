@@ -29,7 +29,7 @@ public class VendorServiceImpl implements VendorService {
     public List<VendorResponse> getAllVendors() {
         log.info("Getting all vendors ===>>> " + LocalDateTime.now());
         MongoCollection<Vendor> mongoCollection = getCollection();
-        System.out.println("Total records = > " + mongoCollection.countDocuments());
+        log.info("Total records = > " + mongoCollection.countDocuments());
         ObjectMapper objectMapper = new ObjectMapper();
         List<VendorResponse> vendorList = new ArrayList<>();
         mongoCollection.find().map(d-> objectMapper.convertValue(d, VendorResponse.class)).into(vendorList);
@@ -39,11 +39,11 @@ public class VendorServiceImpl implements VendorService {
     @Override
     public void addVendor(VendorRequest vendorRequest) {
         MongoCollection<Vendor> mongoCollection = getCollection();
-        log.info("About to add a new vendor --- ");
         Vendor vendor = Vendor.builder().name(vendorRequest.getName()).displayName(vendorRequest.getDisplayName())
                 .description(vendorRequest.getDescription()).build();
+        log.info("About to add a new vendor --- {} ", vendor);
         mongoCollection.insertOne(vendor);
-        log.info("Inserted vendor into table {}", vendor);
+        log.info("Inserted vendor into table {}", vendor.getName());
     }
 
     private MongoCollection<Vendor> getCollection() {

@@ -23,7 +23,7 @@ public class VendorController {
 
     @Get(value = "/list_vendors", produces = MediaType.APPLICATION_JSON)
     public List<VendorResponse> getAllVendors() {
-        log.info("Get all vendors in controller ");
+        log.info("Getting all existing vendors ");
         return vendorService.getAllVendors();
     }
 
