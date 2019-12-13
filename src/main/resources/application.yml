@@ -1,0 +1,12 @@
+micronaut:
+  application:
+    name: micronaut-mongo
+mongodb:
+  uri: mongodb://localhost:27017/micronaut-space
+  options:
+    maxConnectionIdleTime: 10000
+    readConcern: majority
+    writeConcern: acknowledged
+  codec-registry: org.bson.codecs.configuration.CodecRegistry
+
+
