@@ -1,1 +1,1 @@
-# micronaut-mongo
+# micronaut sample with mongodb
